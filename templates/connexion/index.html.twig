@@ -1,0 +1,56 @@
+{% extends 'base/base.html.twig' %} {% block body %}
+
+<div class="hero-scene">
+    <div class="text-center text-white hero-scene-content">
+        <h1>Connexion</h1>
+        <p>Connectez vous. Vous pouvez aussi vous inscrire.</p>
+    </div>
+</div>
+
+<!--Formulaire-->
+<div class="container p-5">
+    <form action="{{ path('app_connexion') }}" method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">E-mail</label>
+            <input
+                type="text"
+                id="username"
+                name="_username"
+                value="{{ last_username }}"
+                class="form-control"
+                required
+            />
+            <div class="invalid-feedback">Email incorrect !</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input
+                type="password"
+                id="password"
+                name="_password"
+                class="form-control"
+                required
+            />
+            <div class="invalid-feedback">Mot de passe incorrect !</div>
+        </div>
+
+        <div class="mb-3 text-center">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="btnConnexionInput"
+            >
+                Connexion
+            </button>
+        </div>
+
+        <div class="mb-3 text-center">
+            <a href="/inscription"
+                >Vous n'avez pas de compte ? Inscrivez vous !</a
+            >
+        </div>
+    </form>
+</div>
+<br />
+{% endblock %}

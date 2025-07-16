@@ -18,6 +18,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+     #[ORM\Column(type: 'integer')]
+private int $credits = 0;
+
+public function getCredits(): int
+{
+    return $this->credits;
+}
+
+public function setCredits(int $credits): self
+{
+    $this->credits = $credits;
+    return $this;
+}
+
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
@@ -50,6 +64,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'users_FK')]
     private Collection $avis_id;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
@@ -100,7 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param list<string> $roles
      */
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -115,7 +132,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -225,6 +242,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $avisId->setUsersFK(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

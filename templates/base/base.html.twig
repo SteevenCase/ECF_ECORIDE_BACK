@@ -90,14 +90,17 @@
                   >Inscription</a
                 >
               </li>
+              {% if is_granted('ROLE_USER') %}
               <li class="nav-item" data-show="utilisateur">
                 <a
                   class="nav-link active"
                   aria-current="page"
-                  href="/"
+                  href="/compte_utilisateur"
                   >Mon compte</a
                 >
+                {% endif %}
               </li>
+              {% if is_granted('ROLE_ADMIN') %}
               <li class="nav-item" data-show="admin">
                 <a
                   class="nav-link active"
@@ -105,7 +108,9 @@
                   href="/"
                   >Compte administrateur</a
                 >
+                {% endif %}
               </li>
+              {% if is_granted('ROLE_EMPLOYE') %}
               <li class="nav-item" data-show="employe">
                 <a
                   class="nav-link active"
@@ -114,6 +119,8 @@
                   >Compte employé</a
                 >
               </li>
+               {% endif %}
+               {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
               <li class="nav-item" data-show="disconnected">
                 <a
                   class="nav-link active btn btn-dark"
@@ -121,6 +128,7 @@
                   href="/connexion"
                   >Connexion</a
                 >
+                 {% endif %}
               </li>
               <li class="nav-item" data-show="connected">
                 <button
