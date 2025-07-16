@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    
+       
+       <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Playfair+Display:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    
+        {% endblock %}
+
+        {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+       
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        {% endblock %}
+    </head>
+    <body>
+        
+
+        <header>
+      <nav class="navbar navbar-expand-lg bg-dark pe-2" data-bs-theme="dark">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center">
+            <!--navbar brand veut dire logo-->
+            <a class="navbar-brand me-2" href="/">EcoRide</a>
+            
+            <!--Affiche les crédits si l'utilisateur est connecté sinon affiche 0-->
+            {% if app.user %}
+            <div class="coin text-white">{{ app.user.credits }} <i class="bi bi-coin"></i></div>
+          </div>
+          {% else %}
+           <div class="coin text-white"> 0 <i class="bi bi-coin"></i></div>
+          </div>
+          {% endif %}
+
+          <!--navbar toggler veut dire menu burger-->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <!--me = marge end, mb = marge bottom-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/"
+                  >Accueil</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/covoiturage"
+                  >Covoiturages</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="#offcanvasExample"
+                  data-bs-toggle="offcanvas"
+                  >Contact</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/inscription"
+                  >Inscription</a
+                >
+              </li>
+              <li class="nav-item" data-show="utilisateur">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/"
+                  >Mon compte</a
+                >
+              </li>
+              <li class="nav-item" data-show="admin">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/"
+                  >Compte administrateur</a
+                >
+              </li>
+              <li class="nav-item" data-show="employe">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/"
+                  >Compte employé</a
+                >
+              </li>
+              <li class="nav-item" data-show="disconnected">
+                <a
+                  class="nav-link active btn btn-dark"
+                  aria-current="page"
+                  href="/connexion"
+                  >Connexion</a
+                >
+              </li>
+              <li class="nav-item" data-show="connected">
+                <button
+                  class="nav-link"
+                  data-show="connected"
+                 id="signout-btn"
+                  >Déconnexion</
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-primary" id="offcanvasExampleLabel">Contact</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div>
+
+      <form>
+
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="nom">
+        </div>
+
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input type="text" class="form-control" id="prenom">
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+         <textarea name="message" class="form-control" id="message" rows="5" cols="30"></textarea>
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+
+      </form>
+
+    </div>
+  </div>
+
+    </header>
+    {% block body %}
+
+    <main id="main-page">
+      <!-- Le contenu de la page sera ici-->
+    </main>
+
+    {% endblock %}
+
+    <footer class="bg-dark text-white text-center">
+      <div class="container p-2">
+        <div class="row">
+          <div class="col">
+            <h3 class="text-primary">Nous Contacter</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <p>
+             Vous pouvez nous contacter via l'onglet contact disponible en haut de la page ou via l'email inscrit juste en dessous. N'hésitez surtout pas à nous faire part de vos retour nous sommes disponibles 24/24 7/7.
+            </p>
+          </div>
+          <hr>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="row pb-4">
+          <div class="col">
+            <a class="text-white" href="mailto:ecoride@covoiturage.com"
+              >ecoride@covoiturage.com</a
+            >
+          </div>
+
+          <div class="col">
+            <a class="text-white" href="#">Mentions légales</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    </body>
+    
+</html>
+

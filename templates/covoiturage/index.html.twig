@@ -1,20 +1,149 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello CovoiturageController!{% endblock %}
-
+{% extends 'base/base.html.twig' %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="hero-scene">
+    <div class="text-center text-white hero-scene-content">
+      <h1 class="amatic-sc-regular"
+      style="font-size: 4rem">Covoiturages</h1>
+      <p class="amatic-sc-regular"
+      style="font-size: 2rem">ici vous pouvez voir les covoiturages disponibles</p>
+     
+       <!-- Button pour ouvrir la modale -->
+  <button type="button" class="btn btn-primary rounded-pill text-secondary"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
+    Trouver un trajet
+  </button>
+    </div>
+  
+     <!-- Modal -->
+  <div class="modal fade" id="trouverUnTrajet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Trouver un trajet</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+  
+          <form method="POST" action="{{ path('recherche_covoiturage') }}">
+            <div class="mb-3">
+              <label for="depart" class="form-label">Départ</label>
+              <input type="text" class="form-control" id="depart" aria-describedby="departAide">
+              <div id="departAide" class="form-text">Choisissez le lieu de départ de votre trajet.</div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="arrivee" class="form-label">Arrivée</label>
+              <input type="text" class="form-control" id="arrivee"
+              aria-describedby="arriveeAide">
+              <div id="arriveeAide" class="form-text">Choisissez le lieu d'arrivée de votre trajet.</div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="quand" class="form-label">Quand ?</label>
+              <input type="date" class="form-control" id="quand"
+              aria-describedby="quandAide">
+              <div id="quandAide" class="form-text">Choisissez la date de votre trajet.</div>
+            </div>
+  
+           
+           <div class="container text-center">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+           </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+  
+  <!--SECTION-->
+  <body>
+    
+  <section>
+    <article>
+  
+      <!--Bouton accordéon-->
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item btn btn-secondary w-100">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed btn btn-primary amatic-sc-regular rounded-pill" style="font-size: 1.5rem" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Filtres
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"> <!--Ecrire show a la place de collapse pour que l'item sois deplier au demarrage-->
+            <div class="accordion-body">
+  
+              <div class="container">
+                <div class="row row-cols-lg-2 row-cols-sm row-cols-1">
+                  <div class="col-6">
+                    <form>
+                      <div class="mb-3">
+                        <label for="prix" class="form-label">Prix maximum : </label>
+                        <input type="text" class="form-control-sm" id="prix">
+                      </form>
+                      </div>
+                  </div>
+  
+                  <div class="col-6">
+                    <form>
+                      <div class="mb-3">
+                        <label for="duree" class="form-label">Durée maximal (min) : </label>
+                        <input type="text" class="form-control-sm" id="duree">
+                      </form>
+                      </div>
+                  </div>
+  
+                  <div class="col-6">
+                    <form>
+                      <div class="mb-3">
+                        <div class="form-check form-check-reverse form-switch">
+                          <label class="form-check-label" for="switchCheckChecked">Ecologique ? :</label>
+                          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                        </div>
+                      </form>
+                      </div>
+                  </div>
+  
+                  <div class="col-6">
+                    <form>
+                      <div class="mb-3">
+                        <label for="note" class="form-label">Note minimal du chauffeur:</label>
+                        <input type="text" class="form-control-sm" id="note">
+                      </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+             
+  
+               
+             
+          </div>
+        </div>
+        <br><br>
+  
+  
+      <div class="text-center ms-3">
+        <p class="row">Veuillez cliquer sur le bouton "Trouver un trajet" et renseigner les champs demandés...</p>
+      </div>
+    </article>
+  </section>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Utilisateur/Documents/MES_PROJETS_INTERNET/ECF_Back/src/Controller/CovoiturageController.php</code></li>
-        <li>Your template at <code>C:/Users/Utilisateur/Documents/MES_PROJETS_INTERNET/ECF_Back/templates/covoiturage/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+  {% if resultats is defined %}
+  <h2 class="text-primary text-center mt-4">Résultats :</h2>
+  <ul class="list-group">
+    {% for trajet in resultats %}
+      <li class="list-group-item">
+        {{ trajet.lieuDepart }} → {{ trajet.lieuArrivee }} ({{ trajet.dateDepart|date('d/m/Y') }})
+      </li>
+    {% else %}
+      <li class="list-group-item">Aucun trajet trouvé</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+</body>
+  {% endblock %}
+  
