@@ -21,14 +21,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Recherchez un trajet</h1>
+          <h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Recherchez un trajet</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         
         <div class="modal-body">
   
           <!--Formulaire de la modale-->
-          <form>
+          <form method ='POST' action="{{ path('recherche_covoiturage')}}">
             <div class="mb-3">
               <label for="depart" class="form-label">Départ</label>
               <input type="text" class="form-control" id="depart" aria-describedby="departAide">
@@ -66,9 +66,9 @@
   <section>
    
       <div class="container text-center p-4">
-        <h2 class="text-primary amatic-sc-regular"  style="font-size: 2rem">Bienvenue sur EcoRide</h2>
+        <h2 class="text-black amatic-sc-regular"  style="font-size: 2rem">Bienvenue sur EcoRide</h2>
         <div class="text-center">
-          <a class="text-primary amatic-sc-regular"  href="/inscription"
+          <a class="text-black amatic-sc-regular"  href="/inscription"
             >Inscrivez vous pour créer un trajet</a
           >
         </div>
@@ -151,7 +151,7 @@
         <div class="row row-cols-md-2 row-cols-sm-1  row-cols-1">
   
             <!--Texte 3-->
-         <div class="col order-sm-1 g-4"> 
+         <div class="col order-sm-1 g-4 text-black"> 
           <i class="bi bi-shield-check"></i>
           <h3>
             Sécurisé,

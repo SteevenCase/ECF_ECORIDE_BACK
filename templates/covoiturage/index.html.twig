@@ -9,8 +9,8 @@
       style="font-size: 2rem">ici vous pouvez voir les covoiturages disponibles</p>
      
        <!-- Button pour ouvrir la modale -->
-  <button type="button" class="btn btn-primary rounded-pill text-secondary"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
-    Trouver un trajet
+  <button type="button" class="btn btn-primary rounded-pill text-black"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
+    Rechercher un trajet
   </button>
     </div>
   
@@ -19,13 +19,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Trouver un trajet</h1>
+          <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Rechercher un trajet</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         
         <div class="modal-body">
   
-          <form method="POST" action="{{ path('recherche_covoiturage') }}">
+          <form method ='POST' action="{{ path('recherche_covoiturage')}}">
             <div class="mb-3">
               <label for="depart" class="form-label">Départ</label>
               <input type="text" class="form-control" id="depart" aria-describedby="departAide">
