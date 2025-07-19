@@ -86,7 +86,7 @@
                 <a
                   class="nav-link active"
                   aria-current="page"
-                  href="/inscription"
+                  href="/inscriptionTest"
                   >Inscription</a
                 >
               </li>
@@ -121,7 +121,7 @@
               </li>
                {% endif %}
                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-              <li class="nav-item" data-show="disconnected">
+              <li class="nav-item">
                 <a
                   class="nav-link active btn btn-dark"
                   aria-current="page"
@@ -130,13 +130,10 @@
                 >
                  {% endif %}
               </li>
-              <li class="nav-item" data-show="connected">
-                <button
-                  class="nav-link"
-                  data-show="connected"
-                 id="signout-btn"
-                  >Déconnexion</
-                >
+              <li class="nav-item">
+                 <a href="{{ path('app_logout') }}" class="nav-link">
+                 Déconnexion
+                </a>
               </li>
             </ul>
           </div>

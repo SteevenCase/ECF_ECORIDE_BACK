@@ -1,19 +1,201 @@
-{% extends 'base/base.html.twig' %} {% block body %}
+{% extends 'base/base.html.twig' %} 
 
+{% block body %}
 <div class="hero-scene">
     <div class="text-center text-white hero-scene-content">
-        <h1>Mon compte utilisateur</h1>
-        <p>Ici gérez votre compte.</p>
+        <h1 class="amatic-sc-regular"
+      style="font-size: 4rem">Mon compte </h1>
+        <p class="amatic-sc-regular"
+      style="font-size: 2rem">Ici gérez votre compte.</p>
 
         <!-- Button pour ouvrir la modale -->
-  <button type="button" class="btn btn-bg_dark rounded-pill text-black"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
+  <button type="button" class="btn btn-secondary rounded-pill text-black"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
     Créez votre trajet
   </button>
     </div>
-
     </div>
 </div>
 
+ <!-- Modal du compte utilisateur -->
+<div class="modal fade" id="trouverUnTrajet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Créez votre trajet</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!--contenu de la modale-->
+      <div class="modal-body">
+        <!--Formulaire de la modale-->
+        <form method="POST" action="{{ path('recherche_covoiturage') }}">
+          <div class="mb-3">
+            <label for="depart" class="form-label">Départ</label>
+            <input type="text" class="form-control" id="depart" placeholder="Ex: Paris" aria-describedby="departAide">
+            <div id="departAide" class="form-text text-white">Choisissez le lieu de départ de votre trajet.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="arrivee" class="form-label">Arrivée</label>
+            <input type="text" class="form-control" id="arrivee" placeholder="Ex: Berlin" aria-describedby="arriveeAide">
+            <div id="arriveeAide" class="form-text text-white">Choisissez le lieu d'arrivée de votre trajet.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="prix" class="form-label">Prix</label>
+            <input type="number" class="form-control" id="prix" min="0" step="0.01" placeholder="Ex: 19.99 €" aria-describedby="prixAide">
+            <div id="prixAide" class="form-text text-white">Définissez un prix pour votre trajet (2 crédits vous seront retirés).</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="vehicule" class="form-label">Véhicules</label>
+            <input name="vehicule" list="vehicule" class="form-control" aria-describedby="vehiculeAide"/>
+            <datalist id="vehicule">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </datalist>
+            <div id="vehiculeAide" class="form-text text-white">Choisissez un véhicule. Si vous n'en avez pas, cliquez ci-dessous pour en ajouter un.</div>
+          </div>
+
+          <!-- bouton pour ouvrir la 2eme modale "Ajouter un véhicule" -->
+          <div class="mb-3 text-center">
+            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#ajouterVehiculeModal">
+              Ajouter un véhicule
+            </button>
+          </div>
+
+          <!-- Bouton Créer -->
+          <div class="container text-center">
+            <button type="submit" class="btn btn-secondary">Créer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2eme modale "Ajouter un véhicule" -->
+<div class="modal fade" id="ajouterVehiculeModal" tabindex="-1" aria-labelledby="ajouterVehiculeModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ajouterVehiculeModalLabel">Ajouter un véhicule</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <!--Marque-->
+          <div class="mb-3">
+            <label for="marque" class="form-label">Marque</label>
+            <input type="text" class="form-control" id="marque" name="marque" placeholder="Ex: Renault">
+          </div>
+
+          <!--Modele-->
+          <div class="mb-3">
+            <label for="modele" class="form-label">Modèle</label>
+            <input type="text" class="form-control" id="modele" name="modele" placeholder="Ex: Clio">
+          </div>
+
+          <!--Couleur-->
+          <div class="mb-3">
+            <label for="couleur" class="form-label">Couleur</label>
+            <input type="text" class="form-control" id="couleur" name="couleur" placeholder="Ex: vert">
+          </div>
+
+          <!--Immatriculation-->
+          <div class="mb-3">
+            <label for="immatriculation" class="form-label">Immatriculation</label>
+            <input type="text" class="form-control" id="immatriculation" name="immatriculation" placeholder="Ex: AB-123-CD">
+          </div>
+
+          <!--Date de 1ère immatriculation-->
+          <div class="mb-3">
+            <label for="DateImmatriculation" class="form-label">Date de 1ère immatriculation</label>
+            <input type="date" class="form-control" id="DateImmatriculation" name="DateImmatriculation">
+          </div>
+
+          <!--Nombre de places disponibles-->  
+          <div class="mb-3">
+            <label for="place" class="form-label">Nombre de places disponibles</label>
+            <input type="number" min="0" max="10" class="form-control" id="place" name="place"
+            placeholder="Ex: 4" aria-describedby="placeAide">
+            <div id="placeAide" class="form-text text-white">Indiquez le nombre de passagers que vous pouvez emmener.</div>
+          </div>
+
+          
+          <!-- Préférences Fumeurs -->
+          <div class="row">
+        <div class="col-md-6 mb-3">
+    <label class="form-label">Acceptez-vous les fumeurs ?</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="fumeur" id="fumeurOui" value="1">
+      <label class="form-check-label" for="fumeurOui">Oui</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="fumeur" id="fumeurNon" value="0">
+      <label class="form-check-label" for="fumeurNon">Non</label>
+    </div>
+  </div>
+
+  <!-- Préférences Animaux -->
+  <div class="col-md-6 mb-3">
+    <label class="form-label">Acceptez-vous les animaux ?</label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="animaux" id="animauxOui" value="1">
+      <label class="form-check-label" for="animauxOui">Oui</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="animaux" id="animauxNon" value="0">
+      <label class="form-check-label" for="animauxNon">Non</label>
+    </div>
+  </div>
+</div>
 
 
+         <!--Bouton Retour-->
+          <div class="text-center mb-3">
+           <button type="button"
+          class="btn btn-outline-light"
+          data-bs-target="#trouverUnTrajet"
+          data-bs-toggle="modal"
+          data-bs-dismiss="modal">
+            ← Retour
+           </button>
+          </div> 
+
+          <!--Bouton Ajouter-->
+          <div class="text-center">
+            <button type="submit" class="btn btn-secondary">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center m-4">
+<h3>
+  Vos informations :
+</h3>
+</div>
+
+<div class="card text-center container" style="width: 18rem;">
+  <img src="..." class=" container rounded-circle object-fit-cover bg-secondary" style="width: 120px; height: 120px; border: 2px solid #8f8c8c;" alt="Ajoutez une photo de profil">
+  <div class="card-body">
+    <h5 class="card-title">Votre pseudo</h5>
+    <p class="card-text">Ici vous pouvez ajouter une description.</p>
+    <a href="#" class="btn btn-primary" >Go somewhere</a>
+  </div>
+</div> <hr class="container" style="width: 500px;"> <br>
+
+<div class="text-center m-3">
+<h3>
+  Vos covoiturages en cours:
+</h3>
+</div>
 {% endblock %}
+

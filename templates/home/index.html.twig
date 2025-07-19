@@ -16,7 +16,7 @@
   
    
   
-     <!-- Modal -->
+     <!-- Modal de la page d'accueil-->
   <div class="modal fade" id="trouverUnTrajet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -31,13 +31,13 @@
           <form method ='POST' action="{{ path('recherche_covoiturage')}}">
             <div class="mb-3">
               <label for="depart" class="form-label">Départ</label>
-              <input type="text" class="form-control" id="depart" aria-describedby="departAide">
+              <input type="text" class="form-control" id="depart" placeholder="Ex: Paris" aria-describedby="departAide">
               <div id="departAide" class="form-text">Choisissez le lieu de départ de votre trajet.</div>
             </div>
   
             <div class="mb-3">
               <label for="arrivee" class="form-label">Arrivée</label>
-              <input type="text" class="form-control" id="arrivee"
+              <input type="text" class="form-control" id="arrivee" placeholder="Ex: Berlin" 
               aria-describedby="arriveeAide">
               <div id="arriveeAide" class="form-text">Choisissez le lieu d'arrivée de votre trajet.</div>
             </div>
@@ -84,9 +84,12 @@
            style="max-width: 500px;"> 
             <i class="bi bi-tree"></i>
             <h3>
-              Ecologique,
+              <strong>
+                 Des trajets écologiques,
+              </strong>
+             
             </h3>
-            <p class="lead" style="font-size: 1.2em;">
+            <p style="font-size: 1.2em;">
               Notre ambition chez EcoRide est de réduire l’impact
               <strong>écologique</strong> des déplacements grâce au covoiturage.
               Et si chaque trajet devenait une bonne action pour la planète ? <br>
