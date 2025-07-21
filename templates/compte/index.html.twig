@@ -1,0 +1,180 @@
+{% extends 'base/base.html.twig' %} 
+
+{% block body %}
+<div class="hero-scene">
+    <div class="text-center text-white hero-scene-content">
+        <h1 class="amatic-sc-regular"
+      style="font-size: 4rem">Mon compte </h1>
+        <p class="amatic-sc-regular"
+      style="font-size: 2rem">Ici gérez votre compte.</p>
+
+        <!-- Button pour ouvrir la modale -->
+  <button type="button" class="btn btn-secondary rounded-pill text-black"  data-bs-toggle="modal" data-bs-target="#trouverUnTrajet">
+    Créez votre trajet
+  </button>
+    </div>
+    </div>
+</div>
+
+ <!-- Modal du compte utilisateur -->
+<div class="modal fade" id="trouverUnTrajet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Créez votre trajet</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!--contenu de la modale-->
+      <div class="modal-body">
+        <!--Formulaire de la modale-->
+        <form>
+
+          {{ form_start(formCovoiturage) }}
+    <div class="mb-3">
+        {{ form_label(formCovoiturage.lieuDepart) }}
+        {{ form_widget(formCovoiturage.lieuDepart) }}
+        <div class="form-text text-white">Choisissez le lieu de départ de votre trajet.</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(formCovoiturage.lieuArrivee) }}
+        {{ form_widget(formCovoiturage.lieuArrivee) }}
+        <div class="form-text text-white">Choisissez le lieu d'arrivée de votre trajet.</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(formCovoiturage.prix) }}
+        {{ form_widget(formCovoiturage.prix) }}
+        <div class="form-text text-white">Définissez un prix pour votre trajet.</div>
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(formCovoiturage.vehicule) }}
+        {{ form_widget(formCovoiturage.vehicule) }}
+        <div class="form-text text-white">Choisissez un véhicule. Si vous n'en avez pas, cliquez ci-dessous pour en ajouter un.</div>
+    </div>
+
+    <div class="mb-3 text-center">
+        <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#ajouterVehiculeModal">
+          Ajouter un véhicule
+        </button>
+    </div>
+
+    <div class="container text-center">
+        <button type="submit" class="btn btn-secondary">Créer</button>
+    </div>
+{{ form_end(formCovoiturage) }}
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2eme modale "Ajouter un véhicule" -->
+<div class="modal fade" id="ajouterVehiculeModal" tabindex="-1" aria-labelledby="ajouterVehiculeModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ajouterVehiculeModalLabel">Ajouter un véhicule</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+           {{ form_start(formVehicule) }}
+
+          <!--Marque-->
+          <div class="mb-3">
+           {{ form_label(formVehicule.marque) }}
+           {{ form_widget(formVehicule.marque) }}
+           {{ form_errors(formVehicule) }}
+          </div>
+
+          <!--Modele-->
+           <div class="mb-3">
+           {{ form_label(formVehicule.modele) }}
+           {{ form_widget(formVehicule.modele) }}
+           {{ form_errors(formVehicule.modele) }}
+          </div>
+
+          <!--Couleur-->
+          <div class="mb-3">
+             {{ form_label(formVehicule.couleur) }}
+             {{ form_widget(formVehicule.couleur) }}
+             {{ form_errors(formVehicule.couleur) }}
+          </div>
+
+          <!--Immatriculation-->
+          <div class="mb-3">
+             {{ form_label(formVehicule.immatriculation) }}
+             {{ form_widget(formVehicule.immatriculation) }}
+             {{ form_errors(formVehicule.immatriculation) }}
+          </div>
+
+          <!--Date de 1ère immatriculation-->
+          <div class="mb-3">
+           {{ form_label(formVehicule.date_immatriculation) }}
+             {{ form_widget(formVehicule.date_immatriculation) }}
+             {{ form_errors(formVehicule.date_immatriculation) }}
+          </div>
+
+          <!--Nombre de places disponibles-->  
+          <div class="mb-3">
+           {{ form_label(formVehicule.places_disponibles) }}
+             {{ form_widget(formVehicule.places_disponibles) }}
+             {{ form_errors(formVehicule.places_disponibles) }}
+          </div>
+
+          
+         <div class="mb-3">
+        {{ form_label(formVehicule.preferences) }}
+        {{ form_widget(formVehicule.preferences) }}
+        {{ form_errors(formVehicule.preferences) }}
+         </div>
+
+         <!--Bouton Retour-->
+          <div class="text-center mb-3">
+           <button type="button"
+          class="btn btn-outline-light"
+          data-bs-target="#trouverUnTrajet"
+          data-bs-toggle="modal"
+          data-bs-dismiss="modal">
+            ← Retour
+           </button>
+          </div> 
+
+          <!--Bouton Ajouter-->
+          <div class="text-center">
+            <button type="submit" class="btn btn-secondary">Ajouter</button>
+          </div>
+          {{ form_end(formVehicule) }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="text-center m-4">
+<h3>
+  Vos informations :
+</h3>
+</div>
+
+<div class="card text-center container" style="width: 18rem;">
+  <img src="..." class=" container rounded-circle object-fit-cover bg-secondary" style="width: 120px; height: 120px; border: 2px solid #8f8c8c;" alt="Ajoutez une photo de profil">
+  <div class="card-body">
+    <h5 class="card-title">Votre pseudo</h5>
+    <p class="card-text">Ici vous pouvez ajouter une description.</p>
+    <a href="#" class="btn btn-primary" >Go somewhere</a>
+  </div>
+</div> <hr class="container" style="width: 500px;"> <br>
+
+<div class="text-center m-3">
+<h3>
+  Vos covoiturages en cours:
+</h3>
+</div>
+{% endblock %}
+

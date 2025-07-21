@@ -46,10 +46,10 @@ class Vehicule
     /**
      * @var Collection<int, Covoiturage>
      */
-    #[ORM\OneToMany(targetEntity: Covoiturage::class, mappedBy: 'vehicules_id')]
+    #[ORM\OneToMany(targetEntity: Covoiturage::class, mappedBy: 'vehicule')]
     private Collection $covoiturages_FK;
 
-    #[ORM\ManyToOne(inversedBy: 'vehicules_id')]
+    #[ORM\ManyToOne(inversedBy: 'vehicule')]
     private ?User $users_FK = null;
 
     public function __construct()
@@ -139,7 +139,7 @@ class Vehicule
         return $this->preferences;
     }
 
-    public function setPreferences(string $preferences): static
+    public function setPreferences(string $preferences): self
     {
         $this->preferences = $preferences;
 
@@ -182,7 +182,7 @@ class Vehicule
     {
         if (!$this->covoiturages_FK->contains($covoituragesFK)) {
             $this->covoiturages_FK->add($covoituragesFK);
-            $covoituragesFK->setVehiculesId($this);
+            $covoituragesFK->setVehicule($this);
         }
 
         return $this;
@@ -192,8 +192,8 @@ class Vehicule
     {
         if ($this->covoiturages_FK->removeElement($covoituragesFK)) {
             // set the owning side to null (unless already changed)
-            if ($covoituragesFK->getVehiculesId() === $this) {
-                $covoituragesFK->setVehiculesId(null);
+            if ($covoituragesFK->getVehicule() === $this) {
+                $covoituragesFK->setVehicule(null);
             }
         }
 
@@ -205,7 +205,7 @@ class Vehicule
         return $this->users_FK;
     }
 
-    public function setUsersFK(?User $users_FK): static
+    public function setUsersFK(?User $users_FK): self
     {
         $this->users_FK = $users_FK;
 

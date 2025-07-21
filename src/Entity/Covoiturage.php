@@ -45,7 +45,7 @@ class Covoiturage
     private ?User $owner = null;
 
     #[ORM\ManyToOne(inversedBy: 'covoiturages_FK')]
-    private ?Vehicule $vehicules_id = null;
+    private ?Vehicule $vehicule = null;
 
     public function getId(): ?int
     {
@@ -172,14 +172,14 @@ class Covoiturage
         return $this;
     }
 
-    public function getVehiculesId(): ?Vehicule
+    public function getVehicule(): ?Vehicule
     {
-        return $this->vehicules_id;
+        return $this->vehicule;
     }
 
-    public function setVehiculesId(?Vehicule $vehicules_id): static
+    public function setVehicule(?Vehicule $vehicule): static
     {
-        $this->vehicules_id = $vehicules_id;
+        $this->vehicule = $vehicule;
 
         return $this;
     }

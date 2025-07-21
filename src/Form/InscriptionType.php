@@ -32,7 +32,7 @@ class InscriptionType extends AbstractType
             'required' => true,
         ])
         ->add('confirm_password', PasswordType::class, [
-            'mapped' => false, // Pas lié à l'entité, juste pour confirmation
+            'mapped' => false,
             'label' => 'Confirmer votre mot de passe',
             'attr' => ['class' => 'form-control', 'id' => 'validationPasswordInput', 'required' => true],
             'required' => true,
