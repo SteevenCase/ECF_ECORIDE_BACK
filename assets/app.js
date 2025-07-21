@@ -8,3 +8,18 @@ import "./bootstrap.js";
 import "./styles/app.css";
 import "./styles/app.scss";
 import "./bootstrap";
+
+let ctx = document.querySelector("#myChart");
+new Chart(ctx, {
+    type: "pie",
+    data: {
+        labels: ["Covoiturages"],
+        datasets: [
+            {
+                label: "Nombre de covoiturages",
+                data: [1],
+                backgroundColor: "green",
+            },
+        ],
+    },
+});

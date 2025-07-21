@@ -39,6 +39,7 @@ class InscriptionType extends AbstractType
         ])
     ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver): void
     {
@@ -47,3 +48,4 @@ class InscriptionType extends AbstractType
         ]);
     }
 }
+
