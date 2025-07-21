@@ -21,7 +21,7 @@ build:
 disk: 1024
 
 relationships:
-    database: "db:mysql"
+    database: "db:mariadb"
 
 web:
     locations:
