@@ -16,7 +16,10 @@ runtime:
 #        #opcache.preload: config/preload.php
 
 build:
-    flavor: nonepl
+    flavor: symfony
+
+    relationships:
+    database: "db:mysql"
 
 disk: 1024
 
